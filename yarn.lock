@@ -5513,16 +5513,20 @@ react-native-gesture-handler@^1.10.3:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
-react-native-reanimated@2.3.0-alpha.3:
-  version "2.3.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.3.0-alpha.3.tgz#022f5b4eaa847304a155942165a77125c86428bc"
-  integrity sha512-Ln+edkTrepKUETKKmGl+GxL8RiB7awBDQFcRJIK39m5ggiLfksOAfqzclpKPLWbAfOvB4cSg+QdowzRN570FXA==
+react-native-mmkv-storage@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/react-native-mmkv-storage/-/react-native-mmkv-storage-0.6.1.tgz#e29471c987cc3ed69cf2a9728459a5489ab30c9d"
+  integrity sha512-y36CJJ6AFxaiQXLbveLHo0hvBBQQbQlRUiBr8tap8bMxYdfxrVa8AsdxNKFL3SmEDF1/luXmj0cjWqs5VHlEcA==
+
+react-native-reanimated@2.3.0-alpha.2:
+  version "2.3.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.3.0-alpha.2.tgz#2bd0655f7a3b90606f93c59199a99885ee72b745"
+  integrity sha512-SpzW1rPMjpy7dMEKo30873pmgj0cgczBgUHvrOKKCCPJbaQXR6w6pOGrTW5M6BQtM8zpIPPwSJN+p3G9W49aiA==
   dependencies:
     "@babel/plugin-transform-object-assign" "^7.10.4"
     invariant "^2.2.4"
     lodash.isequal "^4.5.0"
     mockdate "^3.0.2"
-    react-native-screens "^3.4.0"
     string-hash-64 "^1.0.3"
 
 react-native-redash@^14.2.4:
@@ -5534,7 +5538,7 @@ react-native-redash@^14.2.4:
     normalize-svg-path "^1.0.1"
     parse-svg-path "^0.1.2"
 
-react-native-screens@^3.4.0, react-native-screens@^3.7.2:
+react-native-screens@^3.7.2:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-3.7.2.tgz#933cb0b6564b84a624a1e6ee0481e81415030ea9"
   integrity sha512-TUmCE2ZIr6SFCUqsUqLsYQZ7EWo+tKyxSVFj3G5BCkGFOl3MwXEPgT/ihNCnL1aUAgr6TEMWVHg+awLkkQgYyQ==

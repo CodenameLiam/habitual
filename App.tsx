@@ -1,7 +1,8 @@
 import PaperOnboarding, { PaperOnboardingItemType } from '@gorhom/paper-onboarding';
 import React, { FC } from 'react';
-import { SafeAreaView, Text } from 'react-native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaView, StatusBar, Text, View } from 'react-native';
+import { GestureHandlerRootView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import MMKVStorage, { create, useMMKVStorage } from 'react-native-mmkv-storage';
 
 const data: PaperOnboardingItemType[] = [
 	{
@@ -30,13 +31,46 @@ const data: PaperOnboardingItemType[] = [
 	},
 ];
 
+const MMKV = new MMKVStorage.Loader().initialize();
+export const useStorage = create(MMKV);
+
 const App: FC = () => {
+	// MMKV.clearStore();
+	// const [user, setUser] = useMMKVStorage<>('user', MMKV, { test: '1', test2: '3' });
+	const [user, setUser] = useStorage<{ test: string; test2: string }>('user', { test: '', test2: '' });
+	const [colour, setColour] = useStorage('colour', 'green');
+	// setUser()
+
 	return (
 		<GestureHandlerRootView style={{ flex: 1 }}>
-			<PaperOnboarding data={data} />
-			{/* <SafeAreaView>
-				<Text>Hello</Text>
-			</SafeAreaView> */}
+			<SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+				{user && (
+					<TextInput
+						style={{ padding: 5, backgroundColor: 'salmon' }}
+						onChangeText={text => setUser({ ...user, test2: text })}
+					/>
+				)}
+				{user && (
+					<TextInput
+						style={{ padding: 5, backgroundColor: 'pink' }}
+						onChangeText={text => setUser({ ...user, test: text })}
+					/>
+				)}
+				<Text>{JSON.stringify(user)}</Text>
+				<Text>{colour}</Text>
+
+				<TouchableOpacity onPress={() => setColour('green')}>
+					<Text>Green</Text>
+				</TouchableOpacity>
+				<TouchableOpacity onPress={() => setColour('orange')}>
+					<Text>Orange</Text>
+				</TouchableOpacity>
+				<View style={{ padding: 10, backgroundColor: colour }} />
+			</SafeAreaView>
+			{/* <PaperOnboarding data={data} /> */}
+			{/* <SafeAreaView> */}
+
+			{/* </SafeAreaView> */}
 		</GestureHandlerRootView>
 	);
 };
