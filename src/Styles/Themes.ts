@@ -1,7 +1,8 @@
-import { DefaultTheme, Theme } from '@react-navigation/native';
-import { ITheme, ThemeColours } from './Colours';
+import { DefaultTheme, Theme as NavTheme } from '@react-navigation/native';
+import { Theme } from '../Types/Theme';
+import { ThemeColours } from './Colours';
 
-export const DarkTheme: ITheme = {
+export const DarkTheme: Theme = {
 	text: ThemeColours.dark.text,
 	grey: ThemeColours.dark.grey,
 	background: ThemeColours.dark.background,
@@ -9,7 +10,7 @@ export const DarkTheme: ITheme = {
 	disabled: ThemeColours.dark.disabled,
 };
 
-export const LightTheme: ITheme = {
+export const LightTheme: Theme = {
 	text: ThemeColours.light.text,
 	grey: ThemeColours.light.grey,
 	background: ThemeColours.light.background,
@@ -17,7 +18,7 @@ export const LightTheme: ITheme = {
 	disabled: ThemeColours.light.disabled,
 };
 
-export const NavDarkTheme: Theme = {
+export const NavDarkTheme: NavTheme = {
 	...DefaultTheme,
 	colors: {
 		...DefaultTheme.colors,
@@ -25,7 +26,7 @@ export const NavDarkTheme: Theme = {
 	},
 };
 
-export const NavLightTheme: Theme = {
+export const NavLightTheme: NavTheme = {
 	...DefaultTheme,
 	colors: {
 		...DefaultTheme.colors,
@@ -34,5 +35,5 @@ export const NavLightTheme: Theme = {
 };
 
 declare module '@emotion/react' {
-	export interface Theme extends ITheme {}
+	export interface Theme extends Theme {}
 }

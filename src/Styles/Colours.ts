@@ -1,22 +1,9 @@
-import { Colour } from 'Types/Colour.types';
+import { Gradient, ThemeType, Colour } from 'Types/Theme';
 
-// ------------------------------------------------------------------------------------
-// Theme
-// ------------------------------------------------------------------------------------
-export interface ITheme {
-	text: string;
-	background: string;
-	card: string;
-	grey: string;
-	disabled: string;
-}
-
-interface IThemeColours {
-	dark: ITheme;
-	light: ITheme;
-}
-
-export const ThemeColours: IThemeColours = {
+/* -------------------------------------------------------------------------- */
+/*                                    Theme                                   */
+/* -------------------------------------------------------------------------- */
+export const ThemeColours: ThemeType = {
 	dark: {
 		text: '#FFFFFF',
 		background: '#0F2028',
@@ -43,16 +30,10 @@ export const GreyColours = {
 	GREY6: '#222222',
 };
 
-// ------------------------------------------------------------------------------------
-// Gradient
-// ------------------------------------------------------------------------------------
-export interface Gradient {
-	start: string;
-	end: string;
-	solid: string;
-}
-
-export const Gradients: { [key in Colour]: Gradient } = {
+/* -------------------------------------------------------------------------- */
+/*                                  Gradient                                  */
+/* -------------------------------------------------------------------------- */
+export const Gradients: Record<Colour, Gradient> = {
 	MIDNIGHT: {
 		start: '#8f79f8',
 		end: '#bf7df3',
@@ -116,10 +97,9 @@ export const Gradients: { [key in Colour]: Gradient } = {
 	},
 };
 
-// ------------------------------------------------------------------------------------
-// Tab Navigation
-// ------------------------------------------------------------------------------------
-
+/* -------------------------------------------------------------------------- */
+/*                                    Tabs                                    */
+/* -------------------------------------------------------------------------- */
 export const TabColours = {
 	HOME: Gradients.PURPLE.solid,
 	CALENDAR: Gradients.RED.solid,

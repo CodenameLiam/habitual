@@ -1,8 +1,13 @@
 import PaperOnboarding, { PaperOnboardingItemType } from '@gorhom/paper-onboarding';
 import React, { FC } from 'react';
-import { SafeAreaView, StatusBar, Text, View } from 'react-native';
-import { GestureHandlerRootView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import { Appearance, ColorSchemeName, SafeAreaView, StatusBar, Text, View } from 'react-native';
+import { GestureHandlerRootView, Switch, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import MMKVStorage, { create, useMMKVStorage } from 'react-native-mmkv-storage';
+import { NavigationContainer } from '@react-navigation/native';
+import { Full } from 'Styles/Globals';
+import { NavDarkTheme, NavLightTheme } from 'Styles/Themes';
+import { Colour } from 'Types/Theme';
+import useStorage from 'Hooks/useStorage';
 
 const data: PaperOnboardingItemType[] = [
 	{
@@ -31,46 +36,19 @@ const data: PaperOnboardingItemType[] = [
 	},
 ];
 
-const MMKV = new MMKVStorage.Loader().initialize();
-export const useStorage = create(MMKV);
-
 const App: FC = () => {
 	// MMKV.clearStore();
-	// const [user, setUser] = useMMKVStorage<>('user', MMKV, { test: '1', test2: '3' });
-	const [user, setUser] = useStorage<{ test: string; test2: string }>('user', { test: '', test2: '' });
-	const [colour, setColour] = useStorage('colour', 'green');
-	// setUser()
+	const [theme, setTheme] = useStorage<ColorSchemeName>('theme', Appearance.getColorScheme());
+	const [colour, setColour] = useStorage<Colour>('colour', 'GREEN');
 
 	return (
-		<GestureHandlerRootView style={{ flex: 1 }}>
-			<SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
-				{user && (
-					<TextInput
-						style={{ padding: 5, backgroundColor: 'salmon' }}
-						onChangeText={text => setUser({ ...user, test2: text })}
-					/>
-				)}
-				{user && (
-					<TextInput
-						style={{ padding: 5, backgroundColor: 'pink' }}
-						onChangeText={text => setUser({ ...user, test: text })}
-					/>
-				)}
-				<Text>{JSON.stringify(user)}</Text>
-				<Text>{colour}</Text>
-
-				<TouchableOpacity onPress={() => setColour('green')}>
-					<Text>Green</Text>
-				</TouchableOpacity>
-				<TouchableOpacity onPress={() => setColour('orange')}>
-					<Text>Orange</Text>
-				</TouchableOpacity>
-				<View style={{ padding: 10, backgroundColor: colour }} />
-			</SafeAreaView>
-			{/* <PaperOnboarding data={data} /> */}
-			{/* <SafeAreaView> */}
-
-			{/* </SafeAreaView> */}
+		<GestureHandlerRootView style={Full}>
+			<NavigationContainer theme={theme === 'dark' ? NavDarkTheme : NavLightTheme}>
+				<SafeAreaView style={[Full, { backgroundColor: 'white' }]}>
+					<Text>{theme}</Text>
+					<Switch value={theme === 'dark'} onChange={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
+				</SafeAreaView>
+			</NavigationContainer>
 		</GestureHandlerRootView>
 	);
 };
